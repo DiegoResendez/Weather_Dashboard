@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <header class="homemadeJumbotron" id="bannerHeader">
+        <h1 class="bannerTitle" id="headline">Today's Weather</h1>
+
+    </header>
+    <div class="container container-fluid searchBox card" id="citySearch">
+        <form>
+            <div class="form-row">
+                <div class="textInput" id="citySearch">
+                    <input type="text" class="form-control" placeholder="City">
+                </div>
+                <div class="clickEvent submitButton">
+                    <button type="button" class="btn btn-info searchButton" id="searchButton">?</button>
+                    <!-- <input type="text" class="form-control" placeholder="State"> -->
+                </div>
+            </div>
+        </form>
+        <form>
+            <div class="outputCard hide" id="weatherCard">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" id="searchedCity">City and Date</h5>
+                        <h6 class="card-subtitle mb-2 text-muted" id="temperature">Temperature</h6>
+                        <p class="card-text" id="lineThree">Some quick example text to build on the card title and make
+                            up the bulk
+                            of the card's content.</p>
+                        <ol class="currentWeatherValuesList" id="currentWeatherValuesList">
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="fiveDayForcast hide" id="fiveDayForcast">
+                <h5 class="cardHeader" id="cardHeader">5-Day Forecast:</h5>
+                <form class="forecastNextFiveDays" id="forecastNextFiveDays">
+                    <div class="card" id="day1Forecast"></div>
+                    <div class="card" id="day2Forecast"></div>
+                    <div class="card" id="day3Forecast"></div>
+                    <div class="card" id="day4Forecast"></div>
+                    <div class="card" id="day5Forecast"></div>
+                </form>
+            </div>
+        </form>
+    </div>
+
+
+
+    <script src="script.js"></script>
+    <script src="https://home.openweathermap.org/api_keys"></script>
+</body>
+
+</html>
