@@ -5,11 +5,28 @@ const weatherCard = document.getElementById("weatherCard");
 const searchedCity = document.getElementById("searchedCity");
 const temperature = document.getElementById("temperature");
 const lineThree = document.getElementById("lineThree");
+const cardHeader = document.getElementById("cardHeader");
+const bottomForm = document.getElementById("bottomForm");
+const weatherImage = document.getElementById("weatherImage");
+const humidity = document.getElementById("humidity");
+const placeholder = document.getElementById("placeholder");
+const pastSearches = document.getElementById("pastSearches");
+const citySearch = document.getElementById("citySearch");
+const searchInput = document.getElementById("searchInput");
+const userInput = document.getElementById("userInput");
+const searchBarAndPastSearches = document.getElementById("searchBarAndPastSearches");
 const currentWeatherValuesList = document.getElementById("returnValuesList");
+const pastSearchesTextArea = document.getElementById("pastSearchesTextArea");
+const currentCityWeather = document.getElementById("currentCityWeather");
 const forecastNextFiveDays = document.getElementById("forecastNextFiveDays");
 
 
+
+searchButton.addEventListener("click", searchUserInput);
 // searchButton.addEventListener("click", currentWeatherData);
+// searchButton.addEventListener("click", currentWeatherData);
+// searchButton.addEventListener("click", currentWeatherData);
+
 
 // GIVEN a weather dashboard with form inputs
 // WHEN I search for a city
@@ -25,34 +42,58 @@ const forecastNextFiveDays = document.getElementById("forecastNextFiveDays");
 // WHEN I open the weather dashboard
 // THEN I am presented with the last searched city forecast
 
+// API call:
+// let citySearch = api.openweathermap.org/data/2.5/weather?q=userInput&appid="9df96d10ddb6902ee29290be45dda446";
+
+// let cityStateSearch = api.openweathermap.org/data/2.5/weather?q=userInput&appid="9df96d10ddb6902ee29290be45dda446";
+
+// weatherAPIKey: "9df96d10ddb6902ee29290be45dda446"
+
+// let fiveDayForecast = api.openweathermap.org/data/2.5/forecast?q={city name}&appid="9df96d10ddb6902ee29290be45dda446"
+
+// let cityStateFiveDayForecast = api.openweathermap.org/data/2.5/forecast?q={city name},{state}&appid="9df96d10ddb6902ee29290be45dda446"
 
 
 
-// function searchUserInput(){
+function searchUserInput(){
+	let city = $(this).attr("#userInput");
+	let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=9df96d10ddb6902ee29290be45dda446";
 
+	$ajax({
+		url: queryURL,
+		method: "GET"
+	}).then(function(response){
+	console.log(response)
+});
+
+// let cardObjects = window.location.assign("API Strings?");
+// let currentWeatherValues = ["city", "date", "temperature", "humidity", "wind-speed", "uv-index"]
+// let apiKeys = {"city": "", "date": "", "temperature": "", "humidity": "", "wind-speed": "", "uv-index": ""}
+// let apiSource = "https//:api.openweathermap.org/data/2.5/forecast?q={city name},{state},{country code}&appid={9df96d10ddb6902ee29290be45dda446";
+
+
+// function createWeatherCard(){
+// let newSearch = {};
+
+// 	for(i = 0; i < currentWeatherValues.length; i++){
+// 	let newWeatherCard = currentWeatherValues[i];
+// 	let node = document.createElement("li");
+// 	let textnode = document.createTextNode(newWeatherCard);
+// 	node.appendChild(textnode);
+// 	currentWeatherValuesList.appendChild(node);
+// 	console.log(newWeatherCard)
+// 	}
 // }
-
-let cardObjects = window.location.assign("API Strings?");
-let currentWeatherValues = ["city", "date", "temperature", "humidity", "wind-speed", "uv-index"]
-let apiKeys = {"city": "", "date": "", "temperature": "", "humidity": "", "wind-speed": "", "uv-index": ""}
-let apiSource = "http//:api.openweathermap.org/data/2.5/forecast?q={city name},{state},{country code}&appid={9df96d10ddb6902ee29290be45dda446";
-
-
-function createWeatherCard(){
-let newSearch = {};
-
-	for(i = 0; i < currentWeatherValues.length; i++){
-	let newWeatherCard = currentWeatherValues[i];
-	let node = document.createElement("li");
-	let textnode = document.createTextNode(newWeatherCard);
-	node.appendChild(textnode);
-	currentWeatherValuesList.appendChild(node);
-	console.log(newWeatherCard)
-	}
-}
 
 // create object values for returnValues and add to localStorage
 
+
+// let newCardValues = {[returnValues.value] : [newapiValues]};
+
+// Create 5-Day Forecast
+
+// function pullFiveDayForecast(){
+// let} ;
 
 function createObjectFromAPI(){
 let newapiKeys = {};
@@ -67,78 +108,4 @@ let newapiKeys = {};
 }
 }
 
-
-// let newCardValues = {[returnValues.value] : [newapiValues]};
-
-// Create 5-Day Forecast
-
-function pullFiveDayForecast(){
-let 
-
-
-}
-
-
-
-
-let searchCityWeather = function(city){
-	let queryURL = "http://api.Cityweathermap.org/data/2.5/weather?q=" + city + state + "&appid=9df96d10ddb6902ee29290be45dda446"
-	$.ajax({
-		url: queryURL,
-		method: "GET"
-	}).then(function(response){
-		createRow(response);
-		console.log(response);
-	});
-};
-$("#searchButton").click(searchCityWeather)
-
-
-
-
-// API CALLS
-// API key = 906589c267mshf9a4f4892b356a0p149e31jsn16ecd1a6860c
-
-// let weatherURL = "https://home.openweathermap.org/api_keys"
-// let api_keys = "9df96d10ddb6902ee29290be45dda446"
-
-// let cityStateSearch = "http://api.openweathermap.org/data/2.5/weather?q={city name},{state}&appid={your api key}"
-
-let currentWeatherData = function () {
-  let settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "community-open-weather-map.p.rapidapi.com/weather?callback=test&id=2172797&units=%2522metric%2522%20or%20%2522imperial%2522&mode=xml%252C%20html&q=London%252Cuk",
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-      "x-rapidapi-key": "9df96d10ddb6902ee29290be45dda446"
-    }
-  }
-  
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-  });
-}
-$("#searchButton").click(currentWeatherData)
-    
-
-
-let fiveDayForcast = function () {
-
-  let settings = {
-	"async": true,
-	"crossDomain": true,
-	"url": "community-open-weather-map.p.rapidapi.com/forecast?q=san%20francisco%252Cus",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-		"x-rapidapi-key": "9df96d10ddb6902ee29290be45dda446"
-	}
-}
-
-$.ajax(settings).done(function (response) {
-	console.log(response);
-});
-}
-$("#searchButton").click(fiveDayForcast);
+// I have no clue what the fuck is going on.  

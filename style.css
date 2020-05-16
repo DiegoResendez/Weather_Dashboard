@@ -3,14 +3,27 @@
 body {
 margin: auto;
 padding: 5 px;
-height: 400px;
+height: 800px;
 width: 80%;
-background-color: darkslategray;
+background-color:darkslategray;;
 max-width: 90%;
 max-height: 90%;
+
 }
 
-.homemadeJumbotron {
+
+.searchBox {
+    margin: auto;
+    padding: 5 px;
+    height: 700px;
+    width: 80%;
+    background-color: ghostwhite;
+    /* background-color: rgb(54, 54, 54); */
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.Jumbotron {
     margin: auto;
     padding: 5 px;
     background-color: rgb(59, 59, 59);
@@ -24,13 +37,20 @@ max-height: 90%;
     text-size-adjust: 50%;
 }
 
-.container {
+/* .instructionalText{
+    background-color: ghostwhite;
+} */
+.outputCard {
     margin: auto;
     padding: 5 px;
-    height: 1000px;
-    width: 80%;
-    box-sizing: content-box;
+    height: 400px;
+    width: 100%;
+    background-color: rgb(241, 247, 250);
+    /* max-width: 90%; */
+    max-height: 90%;
 }
-.outputCard {
 
+.searchInput {
+    padding: 5px;
+    border: 3px;
 }
