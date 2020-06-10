@@ -30,12 +30,31 @@
                 </div>
                 <div class="card currentCityWeather col-sm-7" id="currentCityWeather">
                     <div class="card-body">
-                        <h3 class="card-title" id="searchedCity">City and Date</h3>
+                    <div class="searchedCity">
+                        <h3 class="card-title" id="searchedCity"> </h3>
+                    </div>
+                    <div class="date">
+                        <script type="text/javascript" class="calendarDate" id="timeStamp">
+
+                            let date = new Date();
+                            document.write(date);
+                        </script>
+                    </div>
+                    <div class="weather-icon">
+                        <img class="card-subtitle mb-2 text-muted" id="weather-icon">Weather Icon</img>
+                    </div>
+                    <div class="temperature">
                         <h6 class="card-subtitle mb-2 text-muted" id="temperature">Temperature</h6>
-                        <h6 class="card-subtitle mb-2 text-muted" id="weatherImage">weatherImage</h6>
+                    </div>
+                    <div class="humidity">
                         <h6 class="card-subtitle mb-2 text-muted" id="humidity">Humidity</h6>
-                        <h6 class="card-subtitle mb-2 text-muted" id="placeholder">placeholder</h6>
-                        <p class="card-text" id="lineThree">This is the current city seach</p>
+                    </div>
+                    <div class="windSpeed">
+                        <h6 class="card-subtitle mb-2 text-muted" id="windSpeed">Wind Speed</h6>
+                    </div>
+                    <div class="indexUV">
+                        <h6 class="card-subtitle mb-2 text-muted" id="indexUV">UV Index</h6>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -44,11 +63,21 @@
                 <div class="fiveDayForcast" id="fiveDayForcast">
                     <h3 class="cardHeader" id="cardHeader">5-Day Forecast:</h3>
                     <form class="forecastNextFiveDays" id="forecastNextFiveDays">
-                        <div class="card" id="day1Forecast"></div>
-                        <div class="card" id="day2Forecast"></div>
-                        <div class="card" id="day3Forecast"></div>
-                        <div class="card" id="day4Forecast"></div>
-                        <div class="card" id="day5Forecast"></div>
+                        <div class="cardTomorrow" id="day1Forecast">
+
+                        </div>
+                        <div class="cardDayAfterTomorrow" id="day2Forecast">
+
+                        </div>
+                        <div class="cardTodayPlusThreeDays" id="day3Forecast">
+
+                        </div>
+                        <div class="cardTodayPlusFourDays" id="day4Forecast">
+
+                        </div>
+                        <div class="cardTodayPlusFiveDays" id="day5Forecast">
+
+                        </div>
                     </form>
                 </div>
             </form>
