@@ -20,7 +20,6 @@ searchButton.addEventListener("click", searchUserInput);
 // location.assign(?)
 // location.replace(?);
 
-// function
 
 // Weather Search and Five Day Forecast API calls:
 let api = 'http://www.openweather.com'
@@ -32,7 +31,7 @@ function searchUserInput() {
   let city = $("#userInput").val();
   let queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
   // console.log(city);
-  
+
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -51,7 +50,7 @@ function fiveDayForecastSearch(){
   event.preventDefault();
 	let fiveDayForecast = $("#userInput").val();
 	let queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${fiveDayForecast}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
-  
+
 	$.ajax({
     url: queryURL,
 		method: "GET"
@@ -62,8 +61,11 @@ function fiveDayForecastSearch(){
     let url = api + input.value() + apiKey + units
     loadJSON(url, gotData);
   }
+  loadFiveDayForecast();
 };
-// let cardObjects = window.location.assign("API Strings?");
+
+
+
 let weatherKeyValues = {
   "city": "", "date": "", "temperature": "", "humidity": "",
   "wind-speed": "", "uv-index": "",
@@ -82,7 +84,6 @@ const weather = {
   indexUV : "",
 }
 
-
 // Create 5-Day Forecast
 // create object values for returnValues and add to localStorage
   function setNewWeatherKeyValues(){
@@ -98,6 +99,21 @@ const weather = {
       console.log(newweatherKeyValues)
     }
   }
+  
+  function loadFiveDayForecast(){
+    console.log("Needs to create a new card for next five days")
+    let newSearch = {};
+    
+  //   for (i = 0; i < currentWeatherValues.length; i++) {
+  //     let newWeatherCard = currentWeatherValues[i];
+  //     let node = document.createElement("li");
+  //     let textnode = document.createTextNode(newWeatherCard);
+  //     node.appendChild(textnode);
+  //     currentWeatherValuesList.appendChild(node);
+  //     console.log(newWeatherCard)
+  //   }
+  }
+  
   
   
   // function displayWeather() {
@@ -120,81 +136,37 @@ const weather = {
   //   weather.indexUV;
   // }
   
-  // function checkTemperatureValue() {
-    
-  //   if (weather.temperature.value === undefined) return;
-    
-  //   if (weather.temperature.unit === "celcius") {
-  //     let fahrenheit = celciusToFahrenheit(weather.temperature.value);
-      
-  //     fahrenheit = Math.floor(farenheit);
-      
-  //     temperatureElement.innerHTML = `S{fahrenheit} degrees <span> Fahrenheit </span>`;
-      
-  //     weather.temperature.unit == "fahrenheit"
-      
-  //   }
-  //   else {
-  //     temperatureElement.innerHTML = `${weather.temperature.value} degrees <span> Fahrenheit </span>`
-  //   }
-  // }
-  
   
   function celciusToFahrenheit(temperature) {
     return (temperature * 9 / 5) + 32;
     console.log(temperature);
   }
+
   
-  function createWeatherCard() {
-    let newSearch = {};
-    
-    for (i = 0; i < currentWeatherValues.length; i++) {
-      let newWeatherCard = currentWeatherValues[i];
-      let node = document.createElement("li");
-      let textnode = document.createTextNode(newWeatherCard);
-      node.appendChild(textnode);
-      currentWeatherValuesList.appendChild(node);
-      console.log(newWeatherCard)
-    }
-  }
   
-  // let newCardValues = {[returnValues.value] : [newapiValues]};
   
-  function setup() {
-    
-    let button = select('#submit');
-    buttton.mousePressed(getWeather);
-    
-    input = select('#city')
-  }
+  
   
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  //https://uwa.bootcampcontent.com/UWA-Bootcamp/uw-sea-fsf-pt-03-2020-u-c/blob/master/06-Server-Side-APIs/01-Activities/11-BandsInTownApp/Solved/bands-in-town-solved.html
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//https://uwa.bootcampcontent.com/UWA-Bootcamp/uw-sea-fsf-pt-03-2020-u-c/blob/master/06-Server-Side-APIs/01-Activities/11-BandsInTownApp/Solved/bands-in-town-solved.html
-
-
-
-
-
-
-//API activity 10
-// https://uwa.bootcampcontent.com/UWA-Bootcamp/uw-sea-fsf-pt-03-2020-u-c/blob/master/06-Server-Side-APIs/01-Activities/10-WorkingMovieApp/Solved/working-movie-app-solved.html
-// {
+  
+  
+  
+  
+  
+  //API activity 10
+  // https://uwa.bootcampcontent.com/UWA-Bootcamp/uw-sea-fsf-pt-03-2020-u-c/blob/master/06-Server-Side-APIs/01-Activities/10-WorkingMovieApp/Solved/working-movie-app-solved.html
+  // {
 /* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
     // Initial array of movies
