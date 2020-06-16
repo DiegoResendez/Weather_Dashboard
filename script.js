@@ -16,6 +16,54 @@ searchButton.addEventListener("click", fiveDayForecastSearch);
 searchButton.addEventListener("click", searchUserInput);
 
 
+// I want to replace the city with localStorage previous search or window.location (latitude and longitude) 
+// location.assign(?)
+// location.replace(?);
+
+// function
+
+// Weather Search and Five Day Forecast API calls:
+let api = 'http://www.openweather.com'
+let city = 'userInput'
+let units = '&units=metric'
+
+function searchUserInput() {
+  event.preventDefault();
+  let city = $("#userInput").val();
+  let queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
+  // console.log(city);
+  
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function (response) {
+    console.log(response);
+  });
+  function getWeather() {
+    let url = api + input.value() + apiKey + units
+    loadJSON(url, gotData);
+  }
+  setNewWeatherKeyValues();
+  // displayWeather();
+};
+
+function fiveDayForecastSearch(){
+  event.preventDefault();
+	let fiveDayForecast = $("#userInput").val();
+	let queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${fiveDayForecast}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
+  
+	$.ajax({
+    url: queryURL,
+		method: "GET"
+	}).then(function(response){
+    console.log(response);
+  });
+  function getWeather() {
+    let url = api + input.value() + apiKey + units
+    loadJSON(url, gotData);
+  }
+};
+// let cardObjects = window.location.assign("API Strings?");
 let weatherKeyValues = {
   "city": "", "date": "", "temperature": "", "humidity": "",
   "wind-speed": "", "uv-index": "",
@@ -35,99 +83,42 @@ const weather = {
 }
 
 
-// API call:
-
-let api = 'http://www.openweather.com'
-let city = 'userInput'
-let units = '&units=metric'
-
-function searchUserInput() {
-  event.preventDefault();
-  let city = $("#userInput").val();
-  let queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
-   console.log(city);
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function (response) {
-    console.log(response);
-  });
-  function getWeather() {
-    let url = api + input.value() + apiKey + units
-    loadJSON(url, gotData);
-  }
-};
-
-// searchUserInput()
-
-weatherAPIKey: "9df96d10ddb6902ee29290be45dda446"
-
-// let fiveDayForecast = api.openweathermap.org/data/2.5/forecast?q={city name}&appid="9df96d10ddb6902ee29290be45dda446"
-
-// let cityStateFiveDayForecast = api.openweathermap.org/data/2.5/forecast?q={city name},{state}&appid="9df96d10ddb6902ee29290be45dda446"
-// let apiSource = "https//:api.openweathermap.org/data/2.5/forecast?q={city name},{state},{country code}&appid=9df96d10ddb6902ee29290be45dda446";
-
-
-
-function fiveDayForecastSearch(){
-  event.preventDefault();
-	let fiveDayForecast = $("#userInput").val();
-	let queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${fiveDayForecast}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
-  
-	$.ajax({
-    url: queryURL,
-		method: "GET"
-	}).then(function(response){
-    console.log(response);
-  });
-  function getWeather() {
-    let url = api + input.value() + apiKey + units
-    loadJSON(url, gotData);
-  }
-};
-// let cardObjects = window.location.assign("API Strings?");
-
-
 // Create 5-Day Forecast
 // create object values for returnValues and add to localStorage
-function pullFiveDayForecast(){
-  let} ;
-  
-  
-  function createObjectFromAPI(){
-    let newapiKeys = {};
+  function setNewWeatherKeyValues(){
+    console.log("Set New Weather Key Values");
+    let newWeatherKeyValues = {};
     
-    for(i = 0; i < apiKeys.length; i++){
-      let newapiValues = apiKeys[i];
+    for(i = 0; i < weatherKeyValues.length; i++){
+      let newweatherKeyValues = weatherKeyValues[i];
       let node = document.createElement("li");
-      let textnode = document.createTextNode(newapiValues);
+      let textnode = document.createTextNode(newweatherKeyValues);
       node.appendChild(textnode);
       weatherCard.appendChild(node);
-      console.log(newapiValues)
+      console.log(newweatherKeyValues)
     }
   }
   
   
-  function displayWeather() {
-    cityElement.innerHTML =
-    `${weather.city}, ${weather.country}`;
+  // function displayWeather() {
+  //   cityElement.innerHTML =
+  //   `${weather.city}, ${weather.country}`;
     
-    weatherIconElement.innerHTML = 
-      `<img src = "" />`;
+  //   weatherIconElement.innerHTML = 
+  //     `${weather<img src = "" />`;
     
-    temperatureElement.innerHTML =
-    `${weather.temperature.value} degrees <span> Fahrenheit </span>`;
+  //   temperatureElement.innerHTML =
+  //   ${weather.temperature.value} degrees <span> Fahrenheit </span>`;
     
-    humidityElement.innerHTML = 
-    weather.humidity;
+  //   humidityElement.innerHTML = 
+  //   weather.humidity;
     
-    windSpeedElement.innerHTML = 
-    weather.windSpeed; 
+  //   windSpeedElement.innerHTML = 
+  //   weather.windSpeed; 
     
-    indexUVElement.innerHTML = 
-    weather.indexUV;
-  }
+  //   indexUVElement.innerHTML = 
+  //   weather.indexUV;
+  // }
   
   // function checkTemperatureValue() {
     
