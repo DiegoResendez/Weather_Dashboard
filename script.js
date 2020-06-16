@@ -1,5 +1,7 @@
 
 
+let APIKey = '9df96d10ddb6902ee29290be45dda446'
+
 
 const userInput = document.getElementById("userInput");
 const cityElement = document.querySelector(".searchedCity");
@@ -8,16 +10,13 @@ const temperatureElement = document.querySelector(".tempetature");
 const humidityElement = document.querySelector(".humidity");
 const windSpeedElement = document.querySelector(".windSpeed");
 const indexUVElement = document.querySelector(".indexUV");
-// const Element = document.querySelector(".searchedCity");
-// const Element = document.querySelector(".searchedCity");
-// const Element = document.querySelector(".searchedCity");
-// const Element = document.querySelector(".searchedCity");
+
 
 searchButton.addEventListener("click", fiveDayForecastSearch);
-// searchButton.addEventListener("click", fiveDayForecastSearch);
-// searchButton.addEventListener("click", currentWeatherData);
+searchButton.addEventListener("click", searchUserInput);
 
-let apiKeys = {
+
+let weatherKeyValues = {
   "city": "", "date": "", "temperature": "", "humidity": "",
   "wind-speed": "", "uv-index": "",
 }
@@ -40,7 +39,6 @@ const weather = {
 
 let api = 'http://www.openweather.com'
 let city = 'userInput'
-// let APIKey = '9df96d10ddb6902ee29290be45dda446'
 let units = '&units=metric'
 
 function searchUserInput() {
