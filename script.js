@@ -38,10 +38,10 @@ function searchUserInput() {
   }).then(function (response) {
     console.log(response);
   });
-  function getWeather() {
-    let url = api + input.value() + apiKey + units
-    loadJSON(url, gotData);
-  }
+  // function getWeather() {
+  //   let url = api + input.value() + apiKey + units
+  //   loadJSON(url, gotData);
+  // }
   setNewWeatherKeyValues();
   // displayWeather();
 };
@@ -50,18 +50,20 @@ function fiveDayForecastSearch(){
   event.preventDefault();
 	let fiveDayForecast = $("#userInput").val();
 	let queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${fiveDayForecast}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
-
+  
 	$.ajax({
     url: queryURL,
 		method: "GET"
 	}).then(function(response){
     console.log(response);
   });
-  function getWeather() {
-    let url = api + input.value() + apiKey + units
-    loadJSON(url, gotData);
-  }
+  // function getWeather() {
+  //   let url = api + input.value() + apiKey + units
+  //   loadJSON(url, gotData);
+  //   console.log("getWeather");
+  // }
   loadFiveDayForecast();
+  // getWeather();
 };
 
 
@@ -91,18 +93,18 @@ const weather = {
     let newWeatherKeyValues = {};
     
     for(i = 0; i < weatherKeyValues.length; i++){
-      let newweatherKeyValues = weatherKeyValues[i];
+      let newWeatherKeyValues = weatherKeyValues[i];
       let node = document.createElement("li");
-      let textnode = document.createTextNode(newweatherKeyValues);
+      let textnode = document.createTextNode(newWeatherKeyValues);
       node.appendChild(textnode);
       weatherCard.appendChild(node);
-      console.log(newweatherKeyValues)
+      console.log(weatherKeyValues)
     }
   }
   
   function loadFiveDayForecast(){
     console.log("Needs to create a new card for next five days")
-    let newSearch = {};
+    let newFiveDayForecast = {};
     
   //   for (i = 0; i < currentWeatherValues.length; i++) {
   //     let newWeatherCard = currentWeatherValues[i];
