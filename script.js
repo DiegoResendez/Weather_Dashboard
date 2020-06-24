@@ -124,7 +124,9 @@ function fiveDayForecastSearch(){
     for(let i = 0; i < 5; i++)
     {
       let day = '.day-' + (i + 1);
+      console.log(day);
       let forecastDay = $(day).children();
+      console.log(forecastDay);
       let dateText = response.list[i * 8].dt_txt.split(" ");
       let splitDate = dateText[0].split("-");
       let m = splitDate[1];
@@ -134,7 +136,7 @@ function fiveDayForecastSearch(){
         
         $(forecastDay[0]).text(m + "/" + d + "/" + y);
         $(forecastDay[1]).attr("src", "http://openweathermap.org/img/wn/" + response.list[i * 8].weather[0].icon + ".png");
-        $(forecastDay[2]).text("Temp: " + response.main.temp);
+        $(forecastDay[2]).text("Temp: " + response.list[i * 8].main.temp);
         $(forecastDay[3]).text("Humidity: " + response.list[i * 8].main.humidity);
       }
     });
@@ -160,7 +162,10 @@ function fiveDayForecastSearch(){
   //   }
   }
   
-  
+  // create empty Array
+  // get input value push input to array
+  // set value in array
+  //innerhtml
   
   
   function addToPrev (cityName, add) { // function to keep the array list for local storage
