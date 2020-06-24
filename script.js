@@ -95,19 +95,6 @@ function searchUserInput() {
   });  
 };
 
-// function setNewWeatherKeyValues(){
-//   console.log("Set New Weather Key Values");
-//   let newWeatherKeyValues = {};
-  
-//   for(i = 0; i < weatherKeyValues.length; i++){
-//     let newWeatherKeyValues = weatherKeyValues[i];
-//     let node = document.createElement("li");
-//     let textnode = document.createTextNode(newWeatherKeyValues);
-//     node.appendChild(textnode);
-//     weatherCard.appendChild(node);
-//     console.log(weatherKeyValues)
-//   }
-// }
 
 function fiveDayForecastSearch(){
   event.preventDefault();
@@ -142,25 +129,6 @@ function fiveDayForecastSearch(){
     });
   };
   
-  
-  
-  
-  // Create 5-Day Forecast
-  // create object values for returnValues and add to localStorage
-  
-  function loadFiveDayForecast(){
-    console.log("Needs to create a new card for next five days")
-    let newFiveDayForecast = {};
-    
-  //   for (i = 0; i < currentWeatherValues.length; i++) {
-  //     let newWeatherCard = currentWeatherValues[i];
-  //     let node = document.createElement("li");
-  //     let textnode = document.createTextNode(newWeatherCard);
-  //     node.appendChild(textnode);
-  //     currentWeatherValuesList.appendChild(node);
-  //     console.log(newWeatherCard)
-  //   }
-  }
   
   // create empty Array
   // get input value push input to array
