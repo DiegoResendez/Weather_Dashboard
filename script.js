@@ -1,24 +1,22 @@
 
 
 const userInput = document.getElementById("userInput");
-const cityElement = document.querySelector(".searchedCity");
-const weatherIconElement = document.querySelector(".weather-icon");
-const temperatureElement = document.querySelector(".tempetature");
-const humidityElement = document.querySelector(".humidity");
-const windSpeedElement = document.querySelector(".windSpeed");
-const indexUVElement = document.querySelector(".indexUV");
+const cityElement = document.getElementById("searchedCity");
+const weatherIconElement = document.getElementById("weather-icon");
+const temperatureElement = document.getElementById("temperature");
+const humidityElement = document.getElementById("humidity");
+const windSpeedElement = document.getElementById("windSpeed");
+const indexUVElement = document.getElementById("indexUV");
 
 
 let APIKey = '9df96d10ddb6902ee29290be45dda446'
 let city = "";
-// let lat = $(this.latitude);
-// let lon = $(this.longitude);
-// let date = moment().format("MM/DD/YYYY");
+
 
 let previousSearches = [];
 
-previousSearchList();
-initialize();
+// previousSearchList();
+// initialize();
 
 
 searchButton.addEventListener("click", fiveDayForecastSearch);
@@ -29,47 +27,48 @@ searchButton.addEventListener("click", searchUserInput);
 // location.assign(?)
 // location.replace(?);
 
-function previousSearchList() {
-  previousSearches = JSON.parse(localStorage.getItem("searches"));
-  if(previousSearches)
-  {
-      for(let i = 0; i < previousSearches.length; i++) {
-          $('#past-search-' + i).text(previousSearches[i]);
-      }
-  }
-}
+// function previousSearchList() {
+//   previousSearches = JSON.parse(localStorage.getItem("searches"));
+//   if(previousSearches)
+//   {
+//       for(let i = 0; i < previousSearches.length; i++) {
+//           $('#past-search-' + i).text(previousSearches[i]);
+//       }
+//   }
+// }
 
-function initialize()
-{
-    if(previousSearches)
-    {
-        city = previousSearches[0];
-        grabCity(city);
-        console.log("Script has been initialized")
-        console.log(city)
-    }
-    else if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position);
-    }
+// function initialize()
+// {
+    // if(previousSearches)
+    // {
+    //     city = previousSearches[0];
+    //     grabCity(city);
+    //     console.log("Looking for previous city")
+    //     console.log(city)
+    // }
+    // else if(navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(position);
+    // }
 
-    function position(position) {
-        lat = position.coords.latitude;
-        long = position.coords.longitude;
+    // function position(position) {
+    //     lat = position.coords.latitude;
+    //     long = position.coords.longitude;
 
-        let queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=" + APIKey;
+    //     let queryURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=" + APIKey;
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response) {
-            console.log(response);
-            console.log("Need to add response to side column")
-            
-            
-        });
-    }
-}
-
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET"
+    //       }).then(function(response) {
+    //         console.log(response);
+    //         console.log("Need to add response to side column")
+    //         loadFiveDayForecast();
+    //         setNewWeatherKeyValues();
+    //         addToPrev();
+    //       });
+    //     }
+    //   }
+          
 
 
 // Weather Search and Five Day Forecast API calls:
@@ -81,21 +80,34 @@ function searchUserInput() {
   event.preventDefault();
   let searchCity = $("#userInput").val();
   let queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
-  // console.log(city);
 
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function (response) {
     console.log(response);
-  });
-  // function getWeather() {
-  //   let url = api + input.value() + apiKey + units
-  //   loadJSON(url, gotData);
-  // }
-  // setNewWeatherKeyValues();
-  // displayWeather();
+    cityElement.innerHTML = searchCity;
+    $("#weather-icon").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + ".png");
+    temperatureElement.innerHTML = `Temperature: ${response.main.temp} F`;
+    humidityElement.innerHTML = `Humidity: ${response.main.humidity}`;
+    windSpeedElement.innerHTML = `Wind Speed: ${response.wind.speed}`;
+
+  });  
 };
+
+// function setNewWeatherKeyValues(){
+//   console.log("Set New Weather Key Values");
+//   let newWeatherKeyValues = {};
+  
+//   for(i = 0; i < weatherKeyValues.length; i++){
+//     let newWeatherKeyValues = weatherKeyValues[i];
+//     let node = document.createElement("li");
+//     let textnode = document.createTextNode(newWeatherKeyValues);
+//     node.appendChild(textnode);
+//     weatherCard.appendChild(node);
+//     console.log(weatherKeyValues)
+//   }
+// }
 
 function fiveDayForecastSearch(){
   event.preventDefault();
@@ -107,51 +119,32 @@ function fiveDayForecastSearch(){
 		method: "GET"
 	}).then(function(response){
     console.log(response);
-  });
-  // function getWeather() {
-  //   let url = api + input.value() + apiKey + units
-  //   loadJSON(url, gotData);
-  //   console.log("getWeather");
-  // }
-  loadFiveDayForecast();
-  // getWeather();
-};
-
-
-
-let weatherKeyValues = {
-  "city": "", "date": "", "temperature": "", "humidity": "",
-  "wind-speed": "", "uv-index": "",
-}
-
-const weather = {
-  city : "userInput",
-  date : new Date().getHours(), 
-  icon : "",
-  temperature : {
-    value : "",
-    unit : "Fahrenheit"
-  },
-  humidity : "",
-  windSpeed : "",
-  indexUV : "",
-}
-
-// Create 5-Day Forecast
-// create object values for returnValues and add to localStorage
-  function setNewWeatherKeyValues(){
-    console.log("Set New Weather Key Values");
-    let newWeatherKeyValues = {};
     
-    for(i = 0; i < weatherKeyValues.length; i++){
-      let newWeatherKeyValues = weatherKeyValues[i];
-      let node = document.createElement("li");
-      let textnode = document.createTextNode(newWeatherKeyValues);
-      node.appendChild(textnode);
-      weatherCard.appendChild(node);
-      console.log(weatherKeyValues)
-    }
-  }
+    
+    for(let i = 0; i < 5; i++)
+    {
+      let day = '.day-' + (i + 1);
+      let forecastDay = $(day).children();
+      let dateText = response.list[i * 8].dt_txt.split(" ");
+      let splitDate = dateText[0].split("-");
+      let m = splitDate[1];
+      let d = splitDate[2];
+        let y = splitDate[0];
+        
+        
+        $(forecastDay[0]).text(m + "/" + d + "/" + y);
+        $(forecastDay[1]).attr("src", "http://openweathermap.org/img/wn/" + response.list[i * 8].weather[0].icon + ".png");
+        $(forecastDay[2]).text("Temp: " + response.main.temp);
+        $(forecastDay[3]).text("Humidity: " + response.list[i * 8].main.humidity);
+      }
+    });
+  };
+  
+  
+  
+  
+  // Create 5-Day Forecast
+  // create object values for returnValues and add to localStorage
   
   function loadFiveDayForecast(){
     console.log("Needs to create a new card for next five days")
@@ -169,40 +162,48 @@ const weather = {
   
   
   
-  // function displayWeather() {
-  //   cityElement.innerHTML =
-  //   `${weather.city}, ${weather.country}`;
-    
-  //   weatherIconElement.innerHTML = 
-  //     `${weather<img src = "" />`;
-    
-  //   temperatureElement.innerHTML =
-  //   ${weather.temperature.value} degrees <span> Fahrenheit </span>`;
-    
-  //   humidityElement.innerHTML = 
-  //   weather.humidity;
-    
-  //   windSpeedElement.innerHTML = 
-  //   weather.windSpeed; 
-    
-  //   indexUVElement.innerHTML = 
-  //   weather.indexUV;
-  // }
   
-  
-  // function celciusToFahrenheit(temperature) {
-  //   return (temperature * 9 / 5) + 32;
-  //   console.log(temperature);
-  // }
+  function addToPrev (cityName, add) { // function to keep the array list for local storage
+    let length;
+    
+    if(add) { // boolean value to check if we want to add (if the user clicks on a previous search, don't add to the list)
+    
+    console.log(add);
+    
+    if(previousSearches != null)
+    {
+      length = previousSearches.length;
+    }
+    
+    if(length === 8)
+    {
+      if(previousSearches[0] === cityName) {
+        return;
+      }
+      previousSearches.pop();
+      previousSearches.unshift(cityName);
+    }
+    else if(length)
+    {
+      if(previousSearches[0] === cityName) {
+        return;
+      }
+      previousSearches.unshift(cityName);
+    }
+    else {
+      previousSearches = [];
+      previousSearches.push(cityName);
+    }
+    
+    let json = JSON.stringify(previousSearches);
+    localStorage.setItem("searches", json);
+    
+  }
+}
 
-  
-  
-  
-  
-  
 
-  
-  
-  
-  
-  
+
+
+
+
+
