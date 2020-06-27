@@ -11,8 +11,6 @@ const indexUVElement = document.getElementById("indexUV");
 
 let APIKey = '9df96d10ddb6902ee29290be45dda446'
 let city = "";
-
-
 let previousSearches = [];
 
 // previousSearchList();
@@ -86,13 +84,14 @@ function searchUserInput() {
     method: "GET"
   }).then(function (response) {
     console.log(response);
-    cityElement.innerHTML = searchCity;
+    cityElement.innerHTML = searchCity.toUpperCase();
     $("#weather-icon").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + ".png");
     temperatureElement.innerHTML = `Temperature: ${response.main.temp} F`;
     humidityElement.innerHTML = `Humidity: ${response.main.humidity}`;
     windSpeedElement.innerHTML = `Wind Speed: ${response.wind.speed}`;
 
   });  
+  addToPrev();
 };
 
 
@@ -118,7 +117,7 @@ function fiveDayForecastSearch(){
       let splitDate = dateText[0].split("-");
       let m = splitDate[1];
       let d = splitDate[2];
-        let y = splitDate[0];
+      let y = splitDate[0];
         
         
         $(forecastDay[0]).text(m + "/" + d + "/" + y);
