@@ -89,8 +89,12 @@ function fiveDayForecastSearch(){
 function addToCityList () { // function to keep the array list for local storage
   let newCity = userInput.value
   
-  document.getElementById("past-search-0").innerHTML = newCity
+  document.getElementById("past-search-0").innerHTML = newCity.toUpperCase();
   
+//I want to combine document.getElementByID() and 
+// document.getElementById("The newCity").style.textTransform = "uppercase";
+
+
   // var json = JSON.stringify(previousSearches);
   // localStorage.setItem("searches", json);
   
