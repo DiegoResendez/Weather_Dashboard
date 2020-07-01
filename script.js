@@ -43,7 +43,7 @@ function searchUserInput() {
 //5-Day Forecast Function
 function fiveDayForecastSearch(){
   event.preventDefault();
-  getCity();
+  // getCity();
   addToCityList();
   // previousSearchList();
   // UVIndex();
@@ -79,62 +79,35 @@ function fiveDayForecastSearch(){
 
 // create empty Array  -- previousSearches = [];
 
-function getCity(){
-  let newCity = userInput.value
-  // console.log(newCity)
-}
+// function getCity(){
+//   addToCityList();
+//   // console.log(newCity)
+// }
 // get input value push input to array
 // set value in array
 //innerhtml
-function addToCityList (newCity, add) { // function to keep the array list for local storage
-  let length;
+function addToCityList () { // function to keep the array list for local storage
+  let newCity = userInput.value
   
-  if(add) { // boolean value to check if we want to add (if the user clicks on a previous search, don't add to the list)
+  document.getElementById("past-search-0").innerHTML = newCity
   
-  console.log(add);
+  // var json = JSON.stringify(previousSearches);
+  // localStorage.setItem("searches", json);
   
-  if(previousSearches != null)
-  {
-    length = previousSearches.length;
-  }
-  
-  if(length === 8)
-  {
-    if(previousSearches[0] === newCity) {
-      return;
-    }
-    previousSearches.pop();
-    previousSearches.unshift(newCity);
-  }
-  else if(length)
-  {
-    if(previousSearches[0] === newCity) {
-      return;
-    }
-    previousSearches.unshift(newCity);
-  }
-  else {
-    previousSearches = [];
-    previousSearches.push(newCity);
-  }
-  
-  var json = JSON.stringify(previousSearches);
-  localStorage.setItem("searches", json);
-  
-}
 }
 
 
-function previousSearchList() {
-  previousSearches = JSON.parse(localStorage.getItem("searches"));
-  if(previousSearches)
-  console.log(previousSearches);
-  {
-    for(let i = 0; i < previousSearches.length; i++) {
-      $('#past-search-' + i).text(previousSearches[i]);
-    }
-  }
-}
+
+// function previousSearchList() {
+//   previousSearches = JSON.parse(localStorage.getItem("searches"));
+//   if(previousSearches)
+//   console.log(previousSearches);
+//   {
+//     for(let i = 0; i < previousSearches.length; i++) {
+//       $('#past-search-' + i).text(previousSearches[i]);
+//     }
+//   }
+// }
 
 
 
