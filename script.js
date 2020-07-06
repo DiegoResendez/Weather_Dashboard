@@ -35,7 +35,7 @@ function searchUserInput() {  //City Search Function
     // console.log(response);
     cityElement.innerHTML = searchCity.toUpperCase();
     document.getElementById("past-search-0").innerHTML = searchCity.toUpperCase();
-    
+
     $("#weather-icon").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + ".png");
 
     lat = response.coord.lat;
@@ -90,13 +90,21 @@ function fiveDayForecastSearch() { //5-Day Forecast Function
 // set value in array
 //innerhtml
 function addToCityList() { // function to keep the array list for local storage
-console.log(localStorage)
+  console.log("Add to City List")
+
+  previousSearches = JSON.parse(localStorage.getItem("searches"));
+  if (previousSearches) {
+    for (let i = 0; i < previousSearches.length; i++) {
+      $('#past-search-' + i).text(previousSearches[i]);
+    }
+  }
 }
 
-function previousSearchList() {
-  let previousSearchList = localStorage.getItem("previousSearches");
-  console.log(previousSearches);
 
+function previousSearchList() {
+  console.log(previousSearches);
+  // let previousSearchList = localStorage.getItem("previousSearches");
+  
   // var json = JSON.stringify(previousSearches);
   // localStorage.setItem("searches", json);
 
@@ -112,72 +120,63 @@ function previousSearchList() {
   //   let textnode = document.createTextNode(cityList);
   //   node.appendChild(textnode);
   // }
-
-  //     previousSearches = JSON.parse(localStorage.getItem("searches"));
-  //   if(previousSearches)
-  //   {
-    //     for(let i = 0; i < previousSearches.length; i++) {
-      //       $('#past-search-' + i).text(previousSearches[i]);
-      //     }
-      //   }
-    }
-    
-    
-    
-    function getPosition(lat, long) {
-      let queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat="
-        + lat + "&lon=" + long + "&appid=9df96d10ddb6902ee29290be45dda446";
-        console.log("Getting Lat and Long");
-    
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).then(function (response) {
-        console.log(response);
-      });
-      }
-
-function UVIndex() {
-  console.log("UVIndex");
-  let queryURL = "https://api.openweathermap.org/data/2.5/uvi?lat="
-    + lat + "&lon=" + long + "&appid=9df96d10ddb6902ee29290be45dda446";
-
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function (response) {
-    console.log(response);
-
-    //console.log("UVI: " + response.value);
-
-    let uvi = response.value;
-    let uviFloor = Math.floor(uvi);
-    let cityDiv = $(".city").children();
-
-    let low = "badge-success";
-    let mod = "badge-warning";
-    let hi = "badge-hi"; // css class bg-orange!
-    let vhi = "badge-danger";
-    let extreme = "badge-extreme"; // css class bg-purple
-
-    if (uviFloor <= 2) {
-      $(cityDiv[4]).html("<p mb-0>UV Index: " + "<span class=\"text-white badge " + low + "\" + style=\"font-size: 16px;\">" + uvi + "</span></p>");
-    }
-    else if (uviFloor >= 3 && uviFloor <= 5) {
-      $(cityDiv[4]).html("<p mb-0>UV Index: " + "<span class=\"text-white badge " + mod + "\" + style=\"font-size: 16px;\">" + uvi + "</span></p>");
-    }
-    else if (uviFloor >= 6 && uviFloor <= 7) {
-      $(cityDiv[4]).html("<p mb-0>UV Index: " + "<span class=\"text-white badge " + hi + "\" + style=\"font-size: 16px;\">" + uvi + "</span></p>");
-    }
-    else if (uviFloor >= 8 && uviFloor <= 10) {
-      $(cityDiv[4]).html("<p mb-0>UV Index: " + "<span class=\"text-white badge " + vhi + "\" + style=\"font-size: 16px;\">" + uvi + "</span></p>");
-    }
-    else if (uviFloor >= 11) {
-      $(cityDiv[4]).html("<p mb-0>UV Index: " + "<span class=\"text-white badge " + extreme + "\" + style=\"font-size: 16px;\">" + uvi + "</span></p>");
-    }
-  });
 }
 
+
+
+  function getPosition(lat, long) {
+    let queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat="
+      + lat + "&lon=" + long + "&appid=9df96d10ddb6902ee29290be45dda446";
+    console.log("Getting Lat and Long");
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function (response) {
+      console.log(response);
+    });
+  }
+
+  function UVIndex() {
+    console.log("UVIndex");
+    let queryURL = "https://api.openweathermap.org/data/2.5/uvi?lat="
+      + lat + "&lon=" + long + "&appid=9df96d10ddb6902ee29290be45dda446";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function (response) {
+      console.log(response);
+
+      //console.log("UVI: " + response.value);
+
+      let uvi = response.value;
+      let uviFloor = Math.floor(uvi);
+      let cityDiv = $(".city").children();
+
+      let low = "badge-success";
+      let mod = "badge-warning";
+      let hi = "badge-hi"; // css class bg-orange!
+      let vhi = "badge-danger";
+      let extreme = "badge-extreme"; // css class bg-purple
+
+      if (uviFloor <= 2) {
+        $(cityDiv[4]).html("<p mb-0>UV Index: " + "<span class=\"text-white badge " + low + "\" + style=\"font-size: 16px;\">" + uvi + "</span></p>");
+      }
+      else if (uviFloor >= 3 && uviFloor <= 5) {
+        $(cityDiv[4]).html("<p mb-0>UV Index: " + "<span class=\"text-white badge " + mod + "\" + style=\"font-size: 16px;\">" + uvi + "</span></p>");
+      }
+      else if (uviFloor >= 6 && uviFloor <= 7) {
+        $(cityDiv[4]).html("<p mb-0>UV Index: " + "<span class=\"text-white badge " + hi + "\" + style=\"font-size: 16px;\">" + uvi + "</span></p>");
+      }
+      else if (uviFloor >= 8 && uviFloor <= 10) {
+        $(cityDiv[4]).html("<p mb-0>UV Index: " + "<span class=\"text-white badge " + vhi + "\" + style=\"font-size: 16px;\">" + uvi + "</span></p>");
+      }
+      else if (uviFloor >= 11) {
+        $(cityDiv[4]).html("<p mb-0>UV Index: " + "<span class=\"text-white badge " + extreme + "\" + style=\"font-size: 16px;\">" + uvi + "</span></p>");
+      }
+    });
+  }
 
 
 
