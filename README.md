@@ -14,3 +14,4 @@ WHEN I view the UV index.
 List of previous searches stored in local storage and a list of searches is located on the app.
 
 ## Screenshot
+Extras\Weather_App_Screenshot.PNG
