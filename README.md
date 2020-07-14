@@ -14,4 +14,3 @@ WHEN I view the UV index.
 List of previous searches stored in local storage and a list of searches is located on the app.
 
 ## Screenshot
-<iframe src="https://drive.google.com/file/d/1WTdCAEy3WkFhH7Af9nfM4JPiSWQIJpdi/preview" width="640" height="480"></iframe>
