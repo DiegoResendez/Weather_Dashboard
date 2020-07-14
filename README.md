@@ -15,4 +15,4 @@ List of previous searches stored in local storage and a list of searches is loca
 
 ## Screenshot
 
-![](images\Weather_App_Screenshot.PNG)
+![](images/Weather_App_Screenshot.PNG)
