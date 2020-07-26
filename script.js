@@ -46,7 +46,7 @@ function searchUserInput() {  //City Search Function
     previousSearchesElement.appendChild(node); 
   // console.log(previousSearches);
 
-  let queryURL = `http://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
+  let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
 
   $.ajax({
     url: queryURL,
@@ -55,7 +55,7 @@ function searchUserInput() {  //City Search Function
     // console.log(response);
     cityElement.innerHTML = searchCity.toUpperCase();
 
-    $("#weather-icon").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + ".png");
+    $("#weather-icon").attr("src", "https://openweathermap.org/img/wn/" + response.weather[0].icon + ".png");
 
     lat = response.coord.lat;
     long = response.coord.lon;
@@ -71,7 +71,7 @@ UVIndex(lat, long);
 function fiveDayForecastSearch() { //5-Day Forecast Function
   event.preventDefault();
   let fiveDayForecast = $("#userInput").val();
-  let queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${fiveDayForecast}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
+  let queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${fiveDayForecast}&appid=9df96d10ddb6902ee29290be45dda446&units=imperial`;
   
   $.ajax({
     url: queryURL,
@@ -90,7 +90,7 @@ function fiveDayForecastSearch() { //5-Day Forecast Function
       let y = splitDate[0];
 
       $(forecastDay[0]).text(m + "/" + d + "/" + y);
-      $(forecastDay[1]).attr("src", "http://openweathermap.org/img/wn/" + response.list[i * 8].weather[0].icon + ".png");
+      $(forecastDay[1]).attr("src", "https://openweathermap.org/img/wn/" + response.list[i * 8].weather[0].icon + ".png");
       $(forecastDay[2]).text("Temp: " + response.list[i * 8].main.temp);
       $(forecastDay[3]).text("Humidity: " + response.list[i * 8].main.humidity);
     }
